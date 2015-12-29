@@ -4390,3 +4390,22 @@ char *	last_arg (char **src, size_t *cluep)
 	return mark;
 }
 
+ssize_t        findchar_quoted (const char *source, int delim)
+{
+       ssize_t retval = 0;
+       const char *p;
+
+       for (p = source; *p; p++)
+       {
+               if (*p == '\\' && p[1])
+                       p++;
+               else if (*p == delim)
+                       break;
+       }
+
+       if (*p)
+               return p - source;
+       else
+               return -1;
+}
+

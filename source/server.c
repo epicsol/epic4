@@ -523,7 +523,10 @@ void	parse_server_info (char **host, char **port, char **password, char **nick, 
 
 		if (*ptr == '"')
 			*password = new_next_arg(ptr, &ptr);
-		ptr = strchr(ptr, ':');
+		if ((span = findchar_quoted(ptr, ':')) >= 0)
+			ptr += span;
+		else
+			ptr = NULL;
 		if (!ptr)
 			break;
 		*ptr++ = 0;

@@ -46,3 +46,4 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * Maildir support from  Jari Turkia (Thanks!)
 * EPIC4-2.10.5 released here (Commit 779)
 * Be reasonable about handling rogue DCC ACCEPTs
+* Backport support for quoted :'s in server passwords from epic5
