@@ -786,8 +786,12 @@ BUILT_IN_FUNCTION(function_delitem, input)
 			item = my_atol(itemstr);
 			if (item >= 0 && item < array->size)
 			{
+				found = 0;
 				if (array->size == 1)
+				{
 					delete_array(name);
+					break;
+				}
 				else
 				{
 					if (item == array->index[item])
@@ -809,7 +813,6 @@ BUILT_IN_FUNCTION(function_delitem, input)
 					RESIZE(array->item, char *, array->size);
 					RESIZE(array->index, long, array->size);
 				}
-				found = 0;
 			}
 		}
 	}
@@ -839,6 +842,7 @@ BUILT_IN_FUNCTION(function_delitems, input)
 			item = my_atol(itemstr);
 			if (item >= 0 && item < array->size && array->item[item])
 			{
+				found = 0;
 				deleted++;
 				if (deleted >= array->size)
 				{
@@ -847,7 +851,6 @@ BUILT_IN_FUNCTION(function_delitems, input)
 					break;
 				}
 				new_free(&array->item[item]);
-				found = 0;
 			}
 		}
 		if (deleted)
